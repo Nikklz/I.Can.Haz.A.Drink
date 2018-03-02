@@ -1,0 +1,8 @@
+<% include ../partials/boilerplate.ejs %>
+<h1>There are <%= DRANKS.length %> bars</h1>
+<main class="barsIndex">
+  <% DRANKS.forEach(bars => { %>
+      <% include one-bar.ejs %>
+  <% }) %>
+</main>
+<% include ../partials/footer.ejs %>

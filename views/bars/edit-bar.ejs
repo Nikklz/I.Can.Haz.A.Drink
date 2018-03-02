@@ -1,0 +1,40 @@
+<% include ../partials/boilerplate.ejs %>
+<h1>Edit an existing bar</h1>
+<form action="/bars/<%= DRANKS.id %>?_method=put" method="post">
+  
+  <label>Bar Name:
+    <input type="text" name="barname" value="">
+  </label>
+  <br>
+
+   <label>Bar Address:
+    <input type="text" name="address" value="">
+  </label>
+  <br>
+
+   <label>Bar Zipcode:
+    <input type="text" name="zipcode" value="">
+  </label>
+  <br>
+
+    <label>Phone:
+    <input type="text" name="phone_number" value="">
+  </label>
+<br>
+
+
+<label>Bar Type:
+    <input type="text" name="bartype" value="">
+  </label>
+<br>
+
+  <label>Cost:
+    <input type="text" name="cost" value="">
+  </label>
+  <br>
+  
+    <button type="submit">Submit</button>
+</form>
+
+<% include ../partials/footer.ejs %>
+
