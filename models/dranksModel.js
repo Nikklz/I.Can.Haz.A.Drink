@@ -1,35 +1,26 @@
 const dbconfig = require ('../config/dbconfig');
 const pgp = require ('pg-promise')();
 const db = pgp(dbconfig);
-const dranksModel = {}
+const dranksModel = {};
 
 dranksModel.findAll = () => 
 	db.any('SELECT * FROM DRANKS')
 
 dranksModel.findOne = id =>
-	db.one('SELECT * FROM DRANKS WHERE id = $1', [id])
+	db.one('SELECT * FROM DRANKS WHERE id = $1', id)
 
-dranksModel.create = bars => db.one (`INSERT INTO DRANKS\
-	(barname = $[barname]\
-	address = $[address]\
-	zipcode = $[zipcode]\
-	phone_number = $[phone_number]\
-	bartype = $[bartype]\
-	cost = $[cost]\
-	WHERE id = $[id]\
-	RETURNING *`, bars)
+dranksModel.create = bar => 
+db.one (`INSERT INTO DRANKS (yelp_id, upvote, downvote) VALUES ($[yelp_id], $[upvote], $[downvote])
+	RETURNING *`, bar)
 
-dranksModel.update = bars => db.one(`UPDATE DRANKS\
-	SET (barname = $[barname]\
-	address = $[address]\
-	zipcode = $[zipcode]\
-	phone_number = $[phone_number]\
-	bartype = $[bartype]\
-	cost = $[cost]\
-	WHERE id = $[id]\
-	RETURNING *`)
+dranksModel.update = bar => db.one(`UPDATE DRANKS\
+	SET (yelp_id = $[yelp_id]\
+	upvote = $[upvote]\
+	downvote = $[downvote]\
+	WHERE yelp_id = $[yelp_id]\
+	RETURNING *`, bar)
 
-dranksModel.destroy = bars => db.none(`DELETE FROM DRANKS WHERE id=$1`)
+dranksModel.destroy = bar => db.none(`DELETE FROM DRANKS WHERE id=$1`, bar)
 
 module.exports = dranksModel;
 

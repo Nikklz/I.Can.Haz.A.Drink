@@ -16,8 +16,6 @@ function dbConfig() {
   }
 }
 
-const db = setDatabase();
+const db = dbConfig();
 
 module.exports = db;
-
-module.exports = dbConfig;
